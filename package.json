@@ -1,0 +1,22 @@
+{
+  "name": "rpg-dice-component",
+  "version": "0.0.1",
+  "description": "A simple web component for rolling dice",
+  "main": "index.js",
+  "repository": "https://github.com/trescenzi/rpg-dice-component.git",
+  "author": "Thomas Crescenzi",
+  "license": "MIT",
+  "dependencies": {
+    "babel-plugin-transform-custom-element-classes": "^0.1.0",
+    "jest": "^23.6.0",
+    "parcel": "^1.9.7"
+  },
+  "scripts": {
+    "build-example": "parcel example/index.html",
+    "build-docker": "parcel build example/index.html -d /public",
+    "deploy": "now && now alias"
+  },
+  "broswerslist": [
+    "last 1 Chrome versions"
+  ]
+}

@@ -1,0 +1,40 @@
+<html>
+
+<head>
+	<title>Die Component Example</title>
+	<meta charset="UTF-8" />
+  <style>
+    .container {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    rpg-die {
+      font-size: 2em;
+    }
+
+    input {
+      border: none;
+      font-size: 2em;
+      padding: 10px;
+      outline: none;
+			font-family: serif;
+			letter-spacing: 1px;
+			text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <input id="die-expression" value="1d20" />
+    <rpg-die dice-string="1d20" type="randomplus"></rpg-die>
+  </div>
+	<script src="../src/index.js"></script>
+  <script src="./index.js"></script>
+</body>
+
+</html>
