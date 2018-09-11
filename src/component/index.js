@@ -48,31 +48,6 @@ const styles = `
     font-size: 1rem;
     padding: 0.5em .25em;
   }
-
-  #more-info {
-    position: absolute;
-    font-size: .25em;
-    bottom: 10px;
-    right: 10px;
-  }
-
-  #more-info:hover {
-    color: cadetblue;
-  }
-
-  #dropdown {
-    position: absolute;
-    bottom: -1em;
-    right: -1em;
-    font-size: 0.25em;
-    border: 1px solid lightgray;
-    padding: 0.25em;
-    background-color: white;
-  }
-
-  #dropdown.hidden {
-    display: none;
-  }
 `;
 
 const html = `
@@ -81,10 +56,6 @@ const html = `
   </style>
   <div id="result">
     <span id="text-result">00</span>
-    <span id="more-info">○○○</span>
-    <div class="hidden" id="dropdown">
-      See the Dice rolled here
-    </div>
   </div>
   <button id="roll" type="button">
     Roll
@@ -107,31 +78,21 @@ export default class RpgDiceComponent extends HTMLElement {
     this.resultsText = this.shadowRoot.querySelector('#text-result');
     this.rollButton = this.shadowRoot.querySelector('#roll');
 
-    this.setupDropdown();
     this.rollButton.addEventListener('click', () => {
       const {sum, text} = this.roll();
       this.removeClasses();
       this.setResultClass(sum);
       this.resultsText.innerText = sum;
-      this.shadowRoot.querySelector('#dropdown').innerText = text;
+      this.dispatchEvent(new CustomEvent('roll', {
+        composed: true,
+        bubbles: true,
+        detail: {
+          sum,
+          text,
+          dice: this.dice,
+        }
+      }));
     });
-  }
-
-  setupDropdown() {
-    const ellipsis = this.shadowRoot.querySelector('#more-info');
-    const dropdown = this.shadowRoot.querySelector('#dropdown');
-    const hideDropdown = ({target}) => {
-      if (!this.contains(target)) {
-        dropdown.classList.add('hidden');
-        window.removeEventListener('click', hideDropdown);
-        ellipsis.addEventListener('click', showDropdown, {once: true});
-      }
-    }
-    const showDropdown = () => {
-      dropdown.classList.remove('hidden');
-      window.addEventListener('click', hideDropdown);
-    }
-    ellipsis.addEventListener('click', showDropdown, {once: true});
   }
 
   removeClasses() {
