@@ -7,7 +7,9 @@
   "author": "Thomas Crescenzi",
   "license": "MIT",
   "dependencies": {
+    "babel-jest": "^23.6.0",
     "babel-plugin-transform-custom-element-classes": "^0.1.0",
+    "babel-preset-env": "^1.7.0",
     "jest": "^23.6.0",
     "parcel": "^1.9.7"
   },

@@ -1,6 +1,6 @@
 export default class Die {
   constructor(sides, randomPlus = true) {
-    this.sides = sides;
+    this.sides = parseInt(sides, 10);
     if (!randomPlus) {
       this.probilities = new Array(sides).fill(1);
     }

@@ -1,6 +1,6 @@
 import Die from './die';
-const add = (x, y) => x + y;
-const subtract = (x, y) => x - y;
+export const add = (x, y) => x + y;
+export const subtract = (x, y) => x - y;
 
 export function parseDiceString(diceString, randomPlus) {
   let tree = {
@@ -29,11 +29,13 @@ export function parseDiceString(diceString, randomPlus) {
         const operator = tree.operators[tree.operators.length - 1] || add;
         for (var i = 0; i<numDice; i++) {
           tree.dice.push(new Die(sides, randomPlus));
-          tree.operators.push(operator);
-          tree.operatorsText.push(operator.name === 'add' ? '+' : '-');
+          if (i !== 0) {
+            tree.operators.push(operator);
+            tree.operatorsText.push(operator.name === 'add' ? '+' : '-');
+          }
         }
       } else if (curr.indexOf('d') === 0) {
-        tree.dice.push(new Die(curr.slice(0), randomPlus));
+        tree.dice.push(new Die(curr.slice(1), randomPlus));
       } else {
         throw new Error(`BAD DICE STRING ${diceString} ${curr}`);
       }
