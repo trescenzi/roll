@@ -25,6 +25,31 @@
 			letter-spacing: 1px;
 			text-align: center;
     }
+
+    #list {
+      height: 500px;
+      width: 200px;
+    }
+
+    #list .list-item:hover {
+      background-color: aliceblue;
+    }
+    #list .list-item:hover .list-item-header {
+      border-bottom: 1px solid aliceblue;
+    }
+
+    #list .list-item {
+      margin-top: 10px;
+    }
+
+    #list .list-item-header {
+      font-size: 1.25em;
+      border-bottom: 1px solid lightgrey;
+    }
+
+    #list .roll-text {
+      text-align: center
+    }
   </style>
 </head>
 
@@ -32,6 +57,7 @@
   <div class="container">
     <input id="die-expression" value="1d20" />
     <rpg-die dice-string="1d20" type="randomplus"></rpg-die>
+    <div id="list"></div>
   </div>
 	<script src="../src/index.js"></script>
   <script src="./index.js"></script>
