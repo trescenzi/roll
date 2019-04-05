@@ -4,6 +4,12 @@ expression.addEventListener('change', ({target: {value}}) => {
   die.setAttribute('dice-string', value); 
 });
 
+function rotate(array, k) {
+  k %= array.length;
+  const m = array.length - k;
+  return array.slice(m).concat(array.slice(0, m));
+}
+
 function constructListItem() {
   const container = document.createElement('div');
   container.classList.add('list-item');
@@ -27,15 +33,16 @@ function fillListItem(listItem, text) {
   return listItem;
 }
 
-const listItems = [];
+let listItems = [];
 const list = document.querySelector('#list');
 die.addEventListener('roll', ({detail: {dice, text, sum}}) => {
   let listItem = listItems[9];
   if (!listItem) {
     listItem = constructListItem();
-    listItems.push(listItem);
+    listItems.unshift(listItem);
   } else {
     listItem.remove();
+    listItems = rotate(listItems, 1);
   }
 
   list.prepend(fillListItem(listItem, text, sum));
