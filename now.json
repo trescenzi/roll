@@ -1,5 +1,7 @@
 {
-  "type": "static",
+  "version": 2,
+  "name": "rpg-dice",
+  "builds": [{ "src": "package.json", "use": "@now/static-build" }],
   "alias": "roll.tcrez.xyz",
   "public": true
 }
