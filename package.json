@@ -15,7 +15,7 @@
   },
   "scripts": {
     "build-example": "parcel example/index.html",
-    "now-build": "parcel build example/index.html -d /dist",
+    "now-build": "parcel build example/index.html",
     "deploy": "now && now alias"
   },
   "broswerslist": [
